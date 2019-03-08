@@ -1,0 +1,17 @@
+{
+  "id": "2",
+  "name": "Jane Doe",
+  "purchasedItems": [
+    {
+      "orderNumber": "1",
+      "itemTitle": "Hammer"
+    },
+    {
+      "orderNumber": "2",
+      "itemTitle": "Chainsaw"
+    }
+  ],
+  "preferredStore": {
+    "name": "eBay"
+  }
+}
