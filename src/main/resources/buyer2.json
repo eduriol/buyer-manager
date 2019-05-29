@@ -3,11 +3,11 @@
   "name": "Jane Doe",
   "purchasedItems": [
     {
-      "orderNumber": "1",
+      "purchaseNumber": "1",
       "itemTitle": "Hammer"
     },
     {
-      "orderNumber": "2",
+      "purchaseNumber": "2",
       "itemTitle": "Chainsaw"
     }
   ],

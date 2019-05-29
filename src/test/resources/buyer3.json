@@ -1,0 +1,13 @@
+{
+  "id": "3",
+  "name": "Marty McFly",
+  "purchasedItems": [
+    {
+      "purchaseNumber": "1",
+      "itemTitle": "Grays Sports Almanac"
+    }
+  ],
+  "preferredStore": {
+    "name": "Blast from the Past"
+  }
+}

@@ -3,11 +3,11 @@
   "name": "John Doe",
   "purchasedItems": [
     {
-      "orderNumber": "1",
+      "purchaseNumber": "1",
       "itemTitle": "PC 486 66MHz 8MB"
     },
     {
-      "orderNumber": "2",
+      "purchaseNumber": "2",
       "itemTitle": "Nintendo NES 8 bits"
     }
   ],

@@ -1,63 +1,48 @@
 package buyer;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import buyer.entities.Buyer;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-class BuyerController {
+public class BuyerController {
 
-    private final List<Buyer> repository;
+    public static final List<Buyer> buyerRepository = new ArrayList<>();
 
     public BuyerController() throws IOException {
-        this.repository = new ArrayList<>();
         //set up some example buyers
-        this.repository.add(Buyer.fromFile("src/main/resources/buyer1.json"));
-        this.repository.add(Buyer.fromFile("src/main/resources/buyer2.json"));
+        for (int i = 1; i <= 2; i++) {
+            buyerRepository.add(Buyer.fromFile("src/main/resources/buyer" + i + ".json"));
+        }
     }
 
     @CrossOrigin(origins = "http://localhost:8000")
     @GetMapping("/buyers")
-    List<Buyer> getAllBuyers() {
-        return repository;
+    public List<Buyer> getAllBuyers() {
+        return buyerRepository;
     }
 
     @PostMapping("/buyer")
-    void addBuyer(@RequestBody Buyer newBuyer) {
-        repository.add(newBuyer);
+    public void addBuyer(@RequestBody Buyer newBuyer) {
+        for (Buyer buyer : buyerRepository) {
+            if (buyer.getId().equals(newBuyer.getId())) {
+                throw new IllegalArgumentException("Buyer id already in use.");
+            }
+        }
+        buyerRepository.add(newBuyer);
     }
 
     @GetMapping("/buyer/{id}")
-    Buyer getBuyer(@PathVariable Long id) {
-        for (Buyer buyer: repository) {
+    public Buyer getBuyer(@PathVariable Long id) {
+        for (Buyer buyer: buyerRepository) {
             if (buyer.getId().equals(id)) {
                 return buyer;
             }
         }
         return null;
     }
-
-    @PutMapping("/buyer/{id}")
-    void replaceBuyer(@RequestBody Buyer newBuyer, @PathVariable Long id) {
-        for (Buyer buyer : repository) {
-            if (buyer.getId().equals(id)) {
-                repository.remove(buyer);
-                repository.add(newBuyer);
-            }
-        }
-    }
-
-    @DeleteMapping("/buyer/{id}")
-    void deleteBuyer(@PathVariable Long id){
-            for (Buyer buyer : repository) {
-                if (buyer.getId().equals(id)) {
-                    repository.remove(buyer);
-                }
-            }
-        }
 
 }

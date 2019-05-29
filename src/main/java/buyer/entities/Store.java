@@ -1,4 +1,4 @@
-package buyer;
+package buyer.entities;
 
 import lombok.Data;
 

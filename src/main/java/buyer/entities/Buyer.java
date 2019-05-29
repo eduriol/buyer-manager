@@ -1,4 +1,4 @@
-package buyer;
+package buyer.entities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
@@ -7,11 +7,11 @@ import java.io.File;
 import java.io.IOException;
 
 @Data
-class Buyer {
+public class Buyer {
 
     private Long id;
     private String name;
-    private Order[] purchasedItems;
+    private Purchase[] purchasedItems;
     private Store preferredStore;
 
     public static Buyer fromFile(String path) throws IOException {
