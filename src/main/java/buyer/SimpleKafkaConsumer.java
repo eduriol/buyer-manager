@@ -47,13 +47,6 @@ public class SimpleKafkaConsumer {
                 LOGGER.info("Received message: " + message);
                 Gson gson = new Gson();
                 Buyer newBuyer = gson.fromJson(message, Buyer.class);
-                // Once we finish processing a Kafka message, we have to commit the offset.
-                // But first we simulate a delay in Kafka processing of 20 seconds
-                try {
-                    Thread.sleep(20000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 commitOffset(record);
 
                 for (Buyer buyer : repository) {
