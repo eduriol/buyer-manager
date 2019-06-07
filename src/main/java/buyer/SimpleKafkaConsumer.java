@@ -26,6 +26,13 @@ public class SimpleKafkaConsumer {
         InputStream input = new FileInputStream("src/main/resources/kafka.properties");
         Properties consumerProperties = new Properties();
         consumerProperties.load(input);
+        String environment = "";
+        if (System.getProperty("environment") != null) {
+            environment = System.getProperty("environment");
+        }
+        if (environment.equals("compose")) {
+            consumerProperties.setProperty("bootstrap.servers", "kafka1:19092");
+        }
         kafkaConsumer = new KafkaConsumer<>(consumerProperties);
         kafkaConsumer.subscribe(Arrays.asList(topicName));
     }
